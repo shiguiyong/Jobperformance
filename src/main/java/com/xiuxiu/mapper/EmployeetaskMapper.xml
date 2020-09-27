@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiuxiu.mapper.EmployeetaskMapper" >
+  <resultMap id="BaseResultMap" type="com.xiuxiu.pojo.Employeetask" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialnumber" property="serialnumber" jdbcType="VARCHAR" />
+    <result column="tasktitle" property="tasktitle" jdbcType="VARCHAR" />
+    <result column="taskdetails" property="taskdetails" jdbcType="VARCHAR" />
+    <result column="empid" property="empid" jdbcType="INTEGER" />
+    <result column="empName" property="empname" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="VARCHAR" />
+    <result column="workhours" property="workhours" jdbcType="DOUBLE" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="allottime" property="allottime" jdbcType="VARCHAR" />
+    <result column="claimtime" property="claimtime" jdbcType="VARCHAR" />
+    <result column="subtime" property="subtime" jdbcType="VARCHAR" />
+    <result column="confirmtime" property="confirmtime" jdbcType="VARCHAR" />
+    <result column="checkman" property="checkman" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="fileurl" property="fileurl" jdbcType="VARCHAR" />
+    <result column="reworkremark" property="reworkremark" jdbcType="VARCHAR" />
+    <result column="reworkurl" property="reworkurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, serialnumber, tasktitle, taskdetails, empid, empName, status, starttime, endtime,
+    workhours, addtime, allottime, claimtime, subtime, confirmtime, checkman, remark,
+    image, fileurl, reworkremark, reworkurl
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiuxiu.pojo.EmployeetaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from employeetask
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from employeetask
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employeetask
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiuxiu.pojo.EmployeetaskExample" >
+    delete from employeetask
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiuxiu.pojo.Employeetask" >
+    insert into employeetask (id, serialnumber, tasktitle,
+      taskdetails, empid, empName,
+      status, starttime, endtime,
+      workhours, addtime, allottime,
+      claimtime, subtime, confirmtime,
+      checkman, remark, image,
+      fileurl, reworkremark, reworkurl
+      )
+    values (#{id,jdbcType=INTEGER}, #{serialnumber,jdbcType=VARCHAR}, #{tasktitle,jdbcType=VARCHAR},
+      #{taskdetails,jdbcType=VARCHAR}, #{empid,jdbcType=INTEGER}, #{empname,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR},
+      #{workhours,jdbcType=DOUBLE}, #{addtime,jdbcType=VARCHAR}, #{allottime,jdbcType=VARCHAR},
+      #{claimtime,jdbcType=VARCHAR}, #{subtime,jdbcType=VARCHAR}, #{confirmtime,jdbcType=VARCHAR},
+      #{checkman,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+      #{fileurl,jdbcType=VARCHAR}, #{reworkremark,jdbcType=VARCHAR}, #{reworkurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiuxiu.pojo.Employeetask" >
+    insert into employeetask
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serialnumber != null" >
+        serialnumber,
+      </if>
+      <if test="tasktitle != null" >
+        tasktitle,
+      </if>
+      <if test="taskdetails != null" >
+        taskdetails,
+      </if>
+      <if test="empid != null" >
+        empid,
+      </if>
+      <if test="empname != null" >
+        empName,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="workhours != null" >
+        workhours,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="allottime != null" >
+        allottime,
+      </if>
+      <if test="claimtime != null" >
+        claimtime,
+      </if>
+      <if test="subtime != null" >
+        subtime,
+      </if>
+      <if test="confirmtime != null" >
+        confirmtime,
+      </if>
+      <if test="checkman != null" >
+        checkman,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="fileurl != null" >
+        fileurl,
+      </if>
+      <if test="reworkremark != null" >
+        reworkremark,
+      </if>
+      <if test="reworkurl != null" >
+        reworkurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serialnumber != null" >
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktitle != null" >
+        #{tasktitle,jdbcType=VARCHAR},
+      </if>
+      <if test="taskdetails != null" >
+        #{taskdetails,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null" >
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="workhours != null" >
+        #{workhours,jdbcType=DOUBLE},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="allottime != null" >
+        #{allottime,jdbcType=VARCHAR},
+      </if>
+      <if test="claimtime != null" >
+        #{claimtime,jdbcType=VARCHAR},
+      </if>
+      <if test="subtime != null" >
+        #{subtime,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmtime != null" >
+        #{confirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkman != null" >
+        #{checkman,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="reworkremark != null" >
+        #{reworkremark,jdbcType=VARCHAR},
+      </if>
+      <if test="reworkurl != null" >
+        #{reworkurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiuxiu.pojo.EmployeetaskExample" resultType="java.lang.Integer" >
+    select count(*) from employeetask
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update employeetask
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialnumber != null" >
+        serialnumber = #{record.serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tasktitle != null" >
+        tasktitle = #{record.tasktitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskdetails != null" >
+        taskdetails = #{record.taskdetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empid != null" >
+        empid = #{record.empid,jdbcType=INTEGER},
+      </if>
+      <if test="record.empname != null" >
+        empName = #{record.empname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workhours != null" >
+        workhours = #{record.workhours,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addtime != null" >
+        addtime = #{record.addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allottime != null" >
+        allottime = #{record.allottime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.claimtime != null" >
+        claimtime = #{record.claimtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtime != null" >
+        subtime = #{record.subtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmtime != null" >
+        confirmtime = #{record.confirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkman != null" >
+        checkman = #{record.checkman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileurl != null" >
+        fileurl = #{record.fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reworkremark != null" >
+        reworkremark = #{record.reworkremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reworkurl != null" >
+        reworkurl = #{record.reworkurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update employeetask
+    set id = #{record.id,jdbcType=INTEGER},
+    serialnumber = #{record.serialnumber,jdbcType=VARCHAR},
+    tasktitle = #{record.tasktitle,jdbcType=VARCHAR},
+    taskdetails = #{record.taskdetails,jdbcType=VARCHAR},
+    empid = #{record.empid,jdbcType=INTEGER},
+    empName = #{record.empname,jdbcType=VARCHAR},
+    status = #{record.status,jdbcType=INTEGER},
+    starttime = #{record.starttime,jdbcType=VARCHAR},
+    endtime = #{record.endtime,jdbcType=VARCHAR},
+    workhours = #{record.workhours,jdbcType=DOUBLE},
+    addtime = #{record.addtime,jdbcType=VARCHAR},
+    allottime = #{record.allottime,jdbcType=VARCHAR},
+    claimtime = #{record.claimtime,jdbcType=VARCHAR},
+    subtime = #{record.subtime,jdbcType=VARCHAR},
+    confirmtime = #{record.confirmtime,jdbcType=VARCHAR},
+    checkman = #{record.checkman,jdbcType=VARCHAR},
+    remark = #{record.remark,jdbcType=VARCHAR},
+    image = #{record.image,jdbcType=VARCHAR},
+    fileurl = #{record.fileurl,jdbcType=VARCHAR},
+    reworkremark = #{record.reworkremark,jdbcType=VARCHAR},
+    reworkurl = #{record.reworkurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiuxiu.pojo.Employeetask" >
+    update employeetask
+    <set >
+      <if test="serialnumber != null" >
+        serialnumber = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktitle != null" >
+        tasktitle = #{tasktitle,jdbcType=VARCHAR},
+      </if>
+      <if test="taskdetails != null" >
+        taskdetails = #{taskdetails,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null" >
+        empid = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        empName = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="workhours != null" >
+        workhours = #{workhours,jdbcType=DOUBLE},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="allottime != null" >
+        allottime = #{allottime,jdbcType=VARCHAR},
+      </if>
+      <if test="claimtime != null" >
+        claimtime = #{claimtime,jdbcType=VARCHAR},
+      </if>
+      <if test="subtime != null" >
+        subtime = #{subtime,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmtime != null" >
+        confirmtime = #{confirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkman != null" >
+        checkman = #{checkman,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        fileurl = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="reworkremark != null" >
+        reworkremark = #{reworkremark,jdbcType=VARCHAR},
+      </if>
+      <if test="reworkurl != null" >
+        reworkurl = #{reworkurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiuxiu.pojo.Employeetask" >
+    update employeetask
+    set serialnumber = #{serialnumber,jdbcType=VARCHAR},
+      tasktitle = #{tasktitle,jdbcType=VARCHAR},
+      taskdetails = #{taskdetails,jdbcType=VARCHAR},
+      empid = #{empid,jdbcType=INTEGER},
+      empName = #{empname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=VARCHAR},
+      workhours = #{workhours,jdbcType=DOUBLE},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      allottime = #{allottime,jdbcType=VARCHAR},
+      claimtime = #{claimtime,jdbcType=VARCHAR},
+      subtime = #{subtime,jdbcType=VARCHAR},
+      confirmtime = #{confirmtime,jdbcType=VARCHAR},
+      checkman = #{checkman,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      fileurl = #{fileurl,jdbcType=VARCHAR},
+      reworkremark = #{reworkremark,jdbcType=VARCHAR},
+      reworkurl = #{reworkurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectJobTask"  resultType="java.util.Map">
+    select k.id,k.serialnumber,k.empid,k.empName
+    ,CONCAT(CONVERT(sum(if(status=7,1,0))*100/count(*),DECIMAL(18,2)),'%') as finished,sum(if(status=2,1,0)) as waitclaim,
+    sum(if(status=3,1,0)) as waitend,sum(if(status=5,1,0)) as waitrework, sum(if(status=6,1,0)) as reworking,
+    sum(if(status=4,1,0)) as waitcheck,sum(if(status=1,1,0)) as rewaitcheck,  sum(if(status=9,1,0)) as numberofrework,sum(if(status=8,1,0)) as overtimenum
+    ,count(*) as total ,sum(if(status=7,1,0)) as finish
+    from  employeetask  k
+    <where>
+      <if test="conditions.employeeName != null and conditions.employeeName != ''">
+        k.empname = "${conditions.employeeName}"
+      </if>
+      <if test="conditions.employeeId != null">
+       and k.empid = "${conditions.employeeId}"
+      </if>
+      <if test="conditions.serialnumber != null and conditions.serialnumber != ''">
+        and k.serialnumber like "%${conditions.serialnumber}%"
+      </if>
+      <if test="conditions.starttime != null and conditions.starttime != ''">
+        and k.addtime >= "${conditions.starttime}"
+      </if>
+      <if test="conditions.endtime != null and conditions.endtime != ''">
+        and k.addtime &lt;= "${conditions.endtime}"
+      </if>
+    </where>
+    Group by k.serialnumber
+    order by k.id desc
+
+  </select>
+
+  <select id="getPercent" resultType="java.util.Map">
+    select CONCAT(CONVERT(sum(if(status=7,1,0))*100/count(*),DECIMAL(18,2)),'%') as finished,sum(if(status=2,1,0)) as waitclaim,
+    sum(if(status=3,1,0)) as waitend,sum(if(status=5,1,0)) as waitrework, sum(if(status=6,1,0)) as reworking,
+    sum(if(status=4,1,0)) as waitcheck,sum(if(status=1,1,0)) as rewaitcheck,  sum(if(status=9,1,0)) as numberofrework,sum(if(status=8,1,0)) as overtimenum
+     ,count(*) as total ,sum(if(status=7,1,0)) as finish  from  employeetask where serialnumber = #{serialnumber}
+  </select>
+  <select id="selectJobTaskDetails"  resultType="com.xiuxiu.pojo.Employeetask">
+    select k.id,k.serialnumber,k.tasktitle,k.taskdetails
+    ,k.empid,k.empName,k.status,k.starttime,k.reworkremark,k.reworkurl,
+    k.endtime,k.addtime,k.workhours,k.allottime,k.claimtime
+    ,k.subtime,k.confirmtime,k.checkman,k.remark,k.image,k.fileurl
+    from (select * from  employeetask ) k join
+    (select id,SUBSTRING_INDEX(${conditions.dateType},',',-1) as addtime  from  employeetask) k2
+    on k.id = k2.id
+    <where>
+      <if test="conditions.employeeName != null and conditions.employeeName != ''">
+        k.empname = "${conditions.employeeName}"
+      </if>
+      <if test="conditions.employeeId != null">
+        and k.empid = "${conditions.employeeId}"
+      </if>
+      <if test="conditions.taskTitle != null and conditions.taskTitle != ''">
+        and k.tasktitle = "${conditions.taskTitle}"
+      </if>
+      <if test="conditions.serialnumber != null and conditions.serialnumber != ''">
+        and k.serialnumber like "%${conditions.serialnumber}%"
+      </if>
+      <if test="conditions.status != null ">
+        and k.status = "${conditions.status}"
+      </if>
+      <if test="conditions.starttime != null and conditions.starttime != ''">
+        and ${conditions.dateType} >= "${conditions.starttime}"
+      </if>
+      <if test="conditions.endtime != null and conditions.endtime != ''">
+        and ${conditions.dateType} &lt;= "${conditions.endtime}"
+      </if>
+    </where>
+   order by k.id desc
+  </select>
+
+  <select id="getSerialnumber" resultType="java.lang.String">
+    select serialnumber from employeetask where  empid = #{empid}  and MONTH(CURDATE()) = MONTH(addtime) GROUP BY serialnumber
+  </select>
+
+
+
+  <update id="updateSubStatus">
+    update employeetask set status = #{status} ,subtime = now() where id = #{id}
+  </update>
+
+  <update id="updateConfirmStatus">
+    update employeetask set status = #{status} ,confirmtime = now() where id = #{id}
+  </update>
+
+  <select id="queryjixiao" resultType="java.lang.Integer">
+select CONVERT(sum(if(status=7,1,0))*100/count(*),DECIMAL(18,2)) from  employeetask where empid = #{empid} and  MONTH(CURDATE()) = MONTH(endtime)
+  </select>
+
+</mapper>

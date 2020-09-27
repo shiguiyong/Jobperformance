@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiuxiu.mapper.MonthlybillMapper" >
+  <resultMap id="BaseResultMap" type="com.xiuxiu.pojo.Monthlybill" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="empId" property="empid" jdbcType="INTEGER" />
+    <result column="empname" property="empname" jdbcType="VARCHAR" />
+    <result column="present" property="present" jdbcType="DECIMAL" />
+    <result column="reducepresent" property="reducepresent" jdbcType="DECIMAL" />
+    <result column="performance" property="performance" jdbcType="DECIMAL" />
+    <result column="performancepercent" property="performancepercent" jdbcType="DOUBLE" />
+    <result column="yuperformance" property="yuperformance" jdbcType="DECIMAL" />
+    <result column="basic" property="basic" jdbcType="DECIMAL" />
+    <result column="addwork" property="addwork" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, duration, empId, empname, present, reducepresent, performance, performancepercent, 
+    yuperformance, basic, addwork
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiuxiu.pojo.MonthlybillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from monthlybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from monthlybill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from monthlybill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiuxiu.pojo.MonthlybillExample" >
+    delete from monthlybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiuxiu.pojo.Monthlybill" >
+    insert into monthlybill (id, duration, empId, 
+      empname, present, reducepresent, 
+      performance, performancepercent, yuperformance, 
+      basic, addwork)
+    values (#{id,jdbcType=INTEGER}, #{duration,jdbcType=VARCHAR}, #{empid,jdbcType=INTEGER}, 
+      #{empname,jdbcType=VARCHAR}, #{present,jdbcType=DECIMAL}, #{reducepresent,jdbcType=DECIMAL}, 
+      #{performance,jdbcType=DECIMAL}, #{performancepercent,jdbcType=DOUBLE}, #{yuperformance,jdbcType=DECIMAL}, 
+      #{basic,jdbcType=DECIMAL}, #{addwork,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiuxiu.pojo.Monthlybill" >
+    insert into monthlybill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="empid != null" >
+        empId,
+      </if>
+      <if test="empname != null" >
+        empname,
+      </if>
+      <if test="present != null" >
+        present,
+      </if>
+      <if test="reducepresent != null" >
+        reducepresent,
+      </if>
+      <if test="performance != null" >
+        performance,
+      </if>
+      <if test="performancepercent != null" >
+        performancepercent,
+      </if>
+      <if test="yuperformance != null" >
+        yuperformance,
+      </if>
+      <if test="basic != null" >
+        basic,
+      </if>
+      <if test="addwork != null" >
+        addwork,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null" >
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="present != null" >
+        #{present,jdbcType=DECIMAL},
+      </if>
+      <if test="reducepresent != null" >
+        #{reducepresent,jdbcType=DECIMAL},
+      </if>
+      <if test="performance != null" >
+        #{performance,jdbcType=DECIMAL},
+      </if>
+      <if test="performancepercent != null" >
+        #{performancepercent,jdbcType=DOUBLE},
+      </if>
+      <if test="yuperformance != null" >
+        #{yuperformance,jdbcType=DECIMAL},
+      </if>
+      <if test="basic != null" >
+        #{basic,jdbcType=DECIMAL},
+      </if>
+      <if test="addwork != null" >
+        #{addwork,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiuxiu.pojo.MonthlybillExample" resultType="java.lang.Integer" >
+    select count(*) from monthlybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update monthlybill
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empid != null" >
+        empId = #{record.empid,jdbcType=INTEGER},
+      </if>
+      <if test="record.empname != null" >
+        empname = #{record.empname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.present != null" >
+        present = #{record.present,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reducepresent != null" >
+        reducepresent = #{record.reducepresent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.performance != null" >
+        performance = #{record.performance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.performancepercent != null" >
+        performancepercent = #{record.performancepercent,jdbcType=DOUBLE},
+      </if>
+      <if test="record.yuperformance != null" >
+        yuperformance = #{record.yuperformance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.basic != null" >
+        basic = #{record.basic,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addwork != null" >
+        addwork = #{record.addwork,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update monthlybill
+    set id = #{record.id,jdbcType=INTEGER},
+      duration = #{record.duration,jdbcType=VARCHAR},
+      empId = #{record.empid,jdbcType=INTEGER},
+      empname = #{record.empname,jdbcType=VARCHAR},
+      present = #{record.present,jdbcType=DECIMAL},
+      reducepresent = #{record.reducepresent,jdbcType=DECIMAL},
+      performance = #{record.performance,jdbcType=DECIMAL},
+      performancepercent = #{record.performancepercent,jdbcType=DOUBLE},
+      yuperformance = #{record.yuperformance,jdbcType=DECIMAL},
+      basic = #{record.basic,jdbcType=DECIMAL},
+      addwork = #{record.addwork,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiuxiu.pojo.Monthlybill" >
+    update monthlybill
+    <set >
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null" >
+        empId = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        empname = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="present != null" >
+        present = #{present,jdbcType=DECIMAL},
+      </if>
+      <if test="reducepresent != null" >
+        reducepresent = #{reducepresent,jdbcType=DECIMAL},
+      </if>
+      <if test="performance != null" >
+        performance = #{performance,jdbcType=DECIMAL},
+      </if>
+      <if test="performancepercent != null" >
+        performancepercent = #{performancepercent,jdbcType=DOUBLE},
+      </if>
+      <if test="yuperformance != null" >
+        yuperformance = #{yuperformance,jdbcType=DECIMAL},
+      </if>
+      <if test="basic != null" >
+        basic = #{basic,jdbcType=DECIMAL},
+      </if>
+      <if test="addwork != null" >
+        addwork = #{addwork,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiuxiu.pojo.Monthlybill" >
+    update monthlybill
+    set duration = #{duration,jdbcType=VARCHAR},
+      empId = #{empid,jdbcType=INTEGER},
+      empname = #{empname,jdbcType=VARCHAR},
+      present = #{present,jdbcType=DECIMAL},
+      reducepresent = #{reducepresent,jdbcType=DECIMAL},
+      performance = #{performance,jdbcType=DECIMAL},
+      performancepercent = #{performancepercent,jdbcType=DOUBLE},
+      yuperformance = #{yuperformance,jdbcType=DECIMAL},
+      basic = #{basic,jdbcType=DECIMAL},
+      addwork = #{addwork,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryBill" resultType="com.xiuxiu.pojo.Monthlybill">
+    select * from monthlybill where empId = #{empid} and duration = #{duration}
+  </select>
+  <select id="billsheet" resultType="com.xiuxiu.pojo.Monthlybill">
+    select * from monthlybill
+    <where>
+      <if test="bill.empid !=null and bill.empid !=''">
+        empId = ${bill.empid}
+      </if>
+      <if test="bill.empname !=null and bill.empname !=''">
+        and  empname = ${bill.empname}
+      </if>
+      <if test="bill.duration !=null and bill.duration !=''">
+        and  duration = ${bill.duration}
+      </if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

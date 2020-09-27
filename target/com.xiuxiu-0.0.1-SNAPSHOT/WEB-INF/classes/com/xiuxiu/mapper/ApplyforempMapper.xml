@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiuxiu.mapper.ApplyforempMapper" >
+  <resultMap id="BaseResultMap" type="com.xiuxiu.pojo.Applyforemp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialnumber" property="serialnumber" jdbcType="VARCHAR" />
+    <result column="empid" property="empid" jdbcType="INTEGER" />
+    <result column="empname" property="empname" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="DOUBLE" />
+    <result column="confirmtime" property="confirmtime" jdbcType="VARCHAR" />
+    <result column="confirmman" property="confirmman" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, serialnumber, empid, empname, addtime, starttime, endtime, duration, confirmtime,
+    confirmman, money, type, status, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiuxiu.pojo.ApplyforempExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from applyforemp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from applyforemp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from applyforemp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiuxiu.pojo.ApplyforempExample" >
+    delete from applyforemp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiuxiu.pojo.Applyforemp" >
+    insert into applyforemp (id, serialnumber, empid,
+      empname, addtime, starttime,
+      endtime, duration, confirmtime,
+      confirmman, money, type,
+      status, remark)
+    values (#{id,jdbcType=INTEGER}, #{serialnumber,jdbcType=VARCHAR}, #{empid,jdbcType=INTEGER},
+      #{empname,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR},
+      #{endtime,jdbcType=VARCHAR}, #{duration,jdbcType=DOUBLE}, #{confirmtime,jdbcType=VARCHAR},
+      #{confirmman,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiuxiu.pojo.Applyforemp" >
+    insert into applyforemp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serialnumber != null" >
+        serialnumber,
+      </if>
+      <if test="empid != null" >
+        empid,
+      </if>
+      <if test="empname != null" >
+        empname,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="confirmtime != null" >
+        confirmtime,
+      </if>
+      <if test="confirmman != null" >
+        confirmman,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serialnumber != null" >
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null" >
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=DOUBLE},
+      </if>
+      <if test="confirmtime != null" >
+        #{confirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmman != null" >
+        #{confirmman,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiuxiu.pojo.ApplyforempExample" resultType="java.lang.Integer" >
+    select count(*) from applyforemp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update applyforemp
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serialnumber != null" >
+        serialnumber = #{record.serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empid != null" >
+        empid = #{record.empid,jdbcType=INTEGER},
+      </if>
+      <if test="record.empname != null" >
+        empname = #{record.empname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addtime != null" >
+        addtime = #{record.addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=DOUBLE},
+      </if>
+      <if test="record.confirmtime != null" >
+        confirmtime = #{record.confirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmman != null" >
+        confirmman = #{record.confirmman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update applyforemp
+    set id = #{record.id,jdbcType=INTEGER},
+    serialnumber = #{record.serialnumber,jdbcType=VARCHAR},
+    empid = #{record.empid,jdbcType=INTEGER},
+    empname = #{record.empname,jdbcType=VARCHAR},
+    addtime = #{record.addtime,jdbcType=VARCHAR},
+    starttime = #{record.starttime,jdbcType=VARCHAR},
+    endtime = #{record.endtime,jdbcType=VARCHAR},
+    duration = #{record.duration,jdbcType=DOUBLE},
+    confirmtime = #{record.confirmtime,jdbcType=VARCHAR},
+    confirmman = #{record.confirmman,jdbcType=VARCHAR},
+    money = #{record.money,jdbcType=DECIMAL},
+    type = #{record.type,jdbcType=INTEGER},
+    status = #{record.status,jdbcType=INTEGER},
+    remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiuxiu.pojo.Applyforemp" >
+    update applyforemp
+    <set >
+      <if test="serialnumber != null" >
+        serialnumber = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null" >
+        empid = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        empname = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=DOUBLE},
+      </if>
+      <if test="confirmtime != null" >
+        confirmtime = #{confirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmman != null" >
+        confirmman = #{confirmman,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiuxiu.pojo.Applyforemp" >
+    update applyforemp
+    set serialnumber = #{serialnumber,jdbcType=VARCHAR},
+      empid = #{empid,jdbcType=INTEGER},
+      empname = #{empname,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=DOUBLE},
+      confirmtime = #{confirmtime,jdbcType=VARCHAR},
+      confirmman = #{confirmman,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="getSerialnumber" resultType="java.lang.String">
+    select serialnumber from applyforemp where  empid = #{empid}  and MONTH(CURDATE()) = MONTH(addtime) GROUP BY serialnumber
+  </select>
+  <select id="queryApplicationDetails" resultType="com.xiuxiu.pojo.Applyforemp">
+     select * from applyforemp
+     <where>
+       <if test="applys.empid !=null and applys.empid !=''">
+         empid = "${applys.empid}"
+       </if>
+       <if test="applys.empname !=null and applys.empname !=''">
+         and empname = "${applys.empname}"
+       </if>
+       <if test="applys.type !=null and applys.type !=''">
+         and type = "${applys.type}"
+       </if>
+       <if test="applys.status !=null and applys.status !=''">
+         and status = "${applys.status}"
+       </if>
+       <if test="applys.addtime !=null and applys.addtime !=''">
+         and addtime >= "${applys.addtime}"
+       </if>
+       <if test="applys.confirmman !=null and applys.confirmman !=''">
+         and addtime &lt;= "${applys.confirmman}"
+       </if>
+     </where>
+     order by id desc
+  </select>
+
+  <select id="queryApplication" resultType="java.util.Map">
+    select id,serialnumber, empid,empname,confirmman,
+    sum(if(status=1,1,0)) as waitnum,
+    sum(if(status=1,duration,0)) as waitduration,
+    sum(if(status=2,money,0)) as money,
+    sum(if(status=2,duration,0)) as durationdone,
+    sum(if(status=3,1,0)) as failnum,
+    sum(if(status=3,duration,0)) as durationfail,
+    sum(if(type=1 and status=2,duration,0)) as jiaban,
+    sum(if(type=1,duration,0)) as totaljiaban,
+    sum(if(type=2 and status=2,duration,0)) as qingjia,
+    sum(if(type=2,duration,0)) as totalqingjia,
+    sum(if(type=3 and status=2,duration,0)) as yeji,
+    sum(if(type=3,duration,0)) as totalyeji,
+    sum(duration) as totalduration
+     from applyforemp
+    <where>
+      <if test="applys.empid !=null and applys.empid !=''">
+        empid = "${applys.empid}"
+      </if>
+      <if test="applys.serialnumber !=null and applys.serialnumber !=''">
+        and serialnumber = "${applys.serialnumber}"
+      </if>
+      <if test="applys.empname !=null and applys.empname !=''">
+        and empname = "${applys.empname}"
+      </if>
+      <if test="applys.type !=null and applys.type !=''">
+        and type = "${applys.type}"
+      </if>
+      <if test="applys.status !=null and applys.status !=''">
+        and status = "${applys.status}"
+      </if>
+      <if test="applys.addtime !=null and applys.addtime !=''">
+        and addtime >= "${applys.addtime}"
+      </if>
+      <if test="applys.confirmman !=null and applys.confirmman !=''">
+        and addtime &lt;= "${applys.confirmman}"
+      </if>
+    </where>
+    group  by serialnumber
+    order by id desc
+  </select>
+
+  <select id="getTotal" resultType="java.util.Map">
+  select sum(if(status=1,duration,0)) as waitduration,
+  sum(if(status=2,duration,0)) as durationdone,
+  sum(if(status=3,duration,0)) as durationfail,
+  sum(if(status=2,money,0)) as money
+  from  applyforemp where serialnumber = #{serialnumber}
+  </select>
+
+  <select id="queryAddWork" resultType="com.xiuxiu.pojo.Applyforemp">
+    select sum(if(status =2 and type !=2,money,0)) as money from applyforemp  where empid = #{empid} and  MONTH(CURDATE()) = MONTH(addtime)
+  </select>
+  <select id="queryQingjia" resultType="com.xiuxiu.pojo.Applyforemp">
+    select sum(if(status =2 and type =2,money,0)) as money from applyforemp  where empid = #{empid} and  MONTH(CURDATE()) = MONTH(addtime)
+  </select>
+</mapper>

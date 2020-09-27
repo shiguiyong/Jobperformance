@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiuxiu.mapper.VisitorvolumeMapper" >
+  <resultMap id="BaseResultMap" type="com.xiuxiu.pojo.Visitorvolume" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nowurl" property="nowurl" jdbcType="VARCHAR" />
+    <result column="fromurl" property="fromurl" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="ipaddress" property="ipaddress" jdbcType="VARCHAR" />
+    <result column="lsframe2" property="lsframe2" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="lsframe" property="lsframe" jdbcType="VARCHAR" />
+    <result column="ispc" property="ispc" jdbcType="VARCHAR" />
+    <result column="ispad" property="ispad" jdbcType="VARCHAR" />
+    <result column="standbyone" property="standbyone" jdbcType="VARCHAR" />
+    <result column="standbytwo" property="standbytwo" jdbcType="VARCHAR" />
+    <result column="standbythr" property="standbythr" jdbcType="VARCHAR" />
+    <result column="standbyfour" property="standbyfour" jdbcType="VARCHAR" />
+    <result column="standbyfive" property="standbyfive" jdbcType="VARCHAR" />
+    <result column="standbysix" property="standbysix" jdbcType="VARCHAR" />
+    <result column="standbyseven" property="standbyseven" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, nowurl, fromurl, ip, ipaddress, lsframe2, addtime, lsframe, ispc, ispad, standbyone,
+    standbytwo, standbythr, standbyfour, standbyfive, standbysix, standbyseven
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiuxiu.pojo.VisitorvolumeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from visitorvolume
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from visitorvolume
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from visitorvolume
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiuxiu.pojo.VisitorvolumeExample" >
+    delete from visitorvolume
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiuxiu.pojo.Visitorvolume" >
+    insert into visitorvolume (id, nowurl, fromurl,
+      ip, ipaddress, lsframe2,
+      addtime, lsframe, ispc,
+      ispad, standbyone, standbytwo,
+      standbythr, standbyfour, standbyfive,
+      standbysix, standbyseven)
+    values (#{id,jdbcType=INTEGER}, #{nowurl,jdbcType=VARCHAR}, #{fromurl,jdbcType=VARCHAR},
+      #{ip,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR}, #{lsframe2,jdbcType=VARCHAR},
+      #{addtime,jdbcType=VARCHAR}, #{lsframe,jdbcType=VARCHAR}, #{ispc,jdbcType=VARCHAR},
+      #{ispad,jdbcType=VARCHAR}, #{standbyone,jdbcType=VARCHAR}, #{standbytwo,jdbcType=VARCHAR},
+      #{standbythr,jdbcType=VARCHAR}, #{standbyfour,jdbcType=VARCHAR}, #{standbyfive,jdbcType=VARCHAR},
+      #{standbysix,jdbcType=VARCHAR}, #{standbyseven,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiuxiu.pojo.Visitorvolume" >
+    insert into visitorvolume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nowurl != null" >
+        nowurl,
+      </if>
+      <if test="fromurl != null" >
+        fromurl,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="ipaddress != null" >
+        ipaddress,
+      </if>
+      <if test="lsframe2 != null" >
+        lsframe2,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="lsframe != null" >
+        lsframe,
+      </if>
+      <if test="ispc != null" >
+        ispc,
+      </if>
+      <if test="ispad != null" >
+        ispad,
+      </if>
+      <if test="standbyone != null" >
+        standbyone,
+      </if>
+      <if test="standbytwo != null" >
+        standbytwo,
+      </if>
+      <if test="standbythr != null" >
+        standbythr,
+      </if>
+      <if test="standbyfour != null" >
+        standbyfour,
+      </if>
+      <if test="standbyfive != null" >
+        standbyfive,
+      </if>
+      <if test="standbysix != null" >
+        standbysix,
+      </if>
+      <if test="standbyseven != null" >
+        standbyseven,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nowurl != null" >
+        #{nowurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fromurl != null" >
+        #{fromurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null" >
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lsframe2 != null" >
+        #{lsframe2,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="lsframe != null" >
+        #{lsframe,jdbcType=VARCHAR},
+      </if>
+      <if test="ispc != null" >
+        #{ispc,jdbcType=VARCHAR},
+      </if>
+      <if test="ispad != null" >
+        #{ispad,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyone != null" >
+        #{standbyone,jdbcType=VARCHAR},
+      </if>
+      <if test="standbytwo != null" >
+        #{standbytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="standbythr != null" >
+        #{standbythr,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyfour != null" >
+        #{standbyfour,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyfive != null" >
+        #{standbyfive,jdbcType=VARCHAR},
+      </if>
+      <if test="standbysix != null" >
+        #{standbysix,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyseven != null" >
+        #{standbyseven,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiuxiu.pojo.VisitorvolumeExample" resultType="java.lang.Integer" >
+    select count(*) from visitorvolume
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update visitorvolume
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.nowurl != null" >
+        nowurl = #{record.nowurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromurl != null" >
+        fromurl = #{record.fromurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null" >
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipaddress != null" >
+        ipaddress = #{record.ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lsframe2 != null" >
+        lsframe2 = #{record.lsframe2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addtime != null" >
+        addtime = #{record.addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lsframe != null" >
+        lsframe = #{record.lsframe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ispc != null" >
+        ispc = #{record.ispc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ispad != null" >
+        ispad = #{record.ispad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbyone != null" >
+        standbyone = #{record.standbyone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbytwo != null" >
+        standbytwo = #{record.standbytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbythr != null" >
+        standbythr = #{record.standbythr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbyfour != null" >
+        standbyfour = #{record.standbyfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbyfive != null" >
+        standbyfive = #{record.standbyfive,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbysix != null" >
+        standbysix = #{record.standbysix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standbyseven != null" >
+        standbyseven = #{record.standbyseven,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update visitorvolume
+    set id = #{record.id,jdbcType=INTEGER},
+    nowurl = #{record.nowurl,jdbcType=VARCHAR},
+    fromurl = #{record.fromurl,jdbcType=VARCHAR},
+    ip = #{record.ip,jdbcType=VARCHAR},
+    ipaddress = #{record.ipaddress,jdbcType=VARCHAR},
+    lsframe2 = #{record.lsframe2,jdbcType=VARCHAR},
+    addtime = #{record.addtime,jdbcType=VARCHAR},
+    lsframe = #{record.lsframe,jdbcType=VARCHAR},
+    ispc = #{record.ispc,jdbcType=VARCHAR},
+    ispad = #{record.ispad,jdbcType=VARCHAR},
+    standbyone = #{record.standbyone,jdbcType=VARCHAR},
+    standbytwo = #{record.standbytwo,jdbcType=VARCHAR},
+    standbythr = #{record.standbythr,jdbcType=VARCHAR},
+    standbyfour = #{record.standbyfour,jdbcType=VARCHAR},
+    standbyfive = #{record.standbyfive,jdbcType=VARCHAR},
+    standbysix = #{record.standbysix,jdbcType=VARCHAR},
+    standbyseven = #{record.standbyseven,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiuxiu.pojo.Visitorvolume" >
+    update visitorvolume
+    <set >
+      <if test="nowurl != null" >
+        nowurl = #{nowurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fromurl != null" >
+        fromurl = #{fromurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null" >
+        ipaddress = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lsframe2 != null" >
+        lsframe2 = #{lsframe2,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="lsframe != null" >
+        lsframe = #{lsframe,jdbcType=VARCHAR},
+      </if>
+      <if test="ispc != null" >
+        ispc = #{ispc,jdbcType=VARCHAR},
+      </if>
+      <if test="ispad != null" >
+        ispad = #{ispad,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyone != null" >
+        standbyone = #{standbyone,jdbcType=VARCHAR},
+      </if>
+      <if test="standbytwo != null" >
+        standbytwo = #{standbytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="standbythr != null" >
+        standbythr = #{standbythr,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyfour != null" >
+        standbyfour = #{standbyfour,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyfive != null" >
+        standbyfive = #{standbyfive,jdbcType=VARCHAR},
+      </if>
+      <if test="standbysix != null" >
+        standbysix = #{standbysix,jdbcType=VARCHAR},
+      </if>
+      <if test="standbyseven != null" >
+        standbyseven = #{standbyseven,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiuxiu.pojo.Visitorvolume" >
+    update visitorvolume
+    set nowurl = #{nowurl,jdbcType=VARCHAR},
+      fromurl = #{fromurl,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      ipaddress = #{ipaddress,jdbcType=VARCHAR},
+      lsframe2 = #{lsframe2,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      lsframe = #{lsframe,jdbcType=VARCHAR},
+      ispc = #{ispc,jdbcType=VARCHAR},
+      ispad = #{ispad,jdbcType=VARCHAR},
+      standbyone = #{standbyone,jdbcType=VARCHAR},
+      standbytwo = #{standbytwo,jdbcType=VARCHAR},
+      standbythr = #{standbythr,jdbcType=VARCHAR},
+      standbyfour = #{standbyfour,jdbcType=VARCHAR},
+      standbyfive = #{standbyfive,jdbcType=VARCHAR},
+      standbysix = #{standbysix,jdbcType=VARCHAR},
+      standbyseven = #{standbyseven,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getVisitorvolume"  resultType="com.xiuxiu.pojo.Visitorvolume">
+    select * from  visitorvolume
+    <where>
+      <if test="volume.ip !=null and volume.ip !=''">
+        ip like "%${volume.ip}%"
+      </if>
+      <if test="volume.ipaddress !=null and volume.ipaddress !=''">
+        and ipaddress like "%${volume.ipaddress}%"
+      </if>
+      <if test="volume.nowurl !=null and volume.nowurl !=''">
+        and nowurl like "%${volume.nowurl}%"
+      </if>
+      <if test="volume.fromurl !=null and volume.fromurl !=''">
+        and fromurl like "%${volume.fromurl}%"
+      </if>
+      <if test="volume.lsframe !=null and volume.lsframe !=''">
+        and lsframe = "${volume.lsframe}"
+      </if>
+      <if test="volume.lsframe2 !=null and volume.lsframe2 !=''">
+        and lsframe2 = "${volume.lsframe2}"
+      </if>
+      <if test="volume.standbyone !=null and volume.standbyone !=''">
+        and addtime >= "${volume.standbyone}"
+      </if>
+      <if test="volume.standbytwo !=null and volume.standbytwo !=''">
+        and addtime &lt;= "${volume.standbytwo}"
+      </if>
+    </where>
+
+    order by id desc
+  </select>
+</mapper>

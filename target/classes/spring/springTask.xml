@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:task="http://www.springframework.org/schema/task"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-4.1.xsd">
+
+
+    <!--  task 定时任务 -->
+    <bean id="timeTask" class="com.xiuxiu.springTaskk.TaskManage"/>
+    <!--   任务池  -->
+    <task:scheduler id="taskScheduler" pool-size="100" />
+    <task:scheduled-tasks scheduler="taskScheduler">
+
+        <!--  每20秒执行一次  -->
+
+
+
+
+<!--
+
+
+                <task:scheduled ref="timeTask" method="financeProduce" cron="0/100 * * * * ?"/>
+
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--每天0点确认收货,删除过期未支付订单,恢复点赞数,删除过期lable-->
+ <!--    <task:scheduled ref="timeTask" method="monthbill" cron="0 00 00 1 * ?"/>-->
+     <task:scheduled ref="timeTask" method="monthbill" cron="0 50 23 * * ?"/>
+     <!--每周一0点生成信用账单-->
+      <!--  <task:scheduled ref="timeTask" method="creditBillProduce" cron="0 0 0 ? * MON"/>
+        &lt;!&ndash;每分钟去检查一次有没有过期的&ndash;&gt;
+        <task:scheduled ref="timeTask" method="supplierEndTime" cron="0 0/1 * * * ? "/>
+
+        &lt;!&ndash;每分钟去检查一次有没有过期的&ndash;&gt;
+        <task:scheduled ref="timeTask" method="userEndTime" cron="0 0/1 * * * ? "/>
+-->
+
+
+    </task:scheduled-tasks>
+
+
+
+
+
+
+</beans>
