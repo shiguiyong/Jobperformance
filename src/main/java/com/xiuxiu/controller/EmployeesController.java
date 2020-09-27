@@ -62,7 +62,6 @@ public class EmployeesController {
         return pageInfo;
     }
 
-
     @RequestMapping("/empsheet")
     public String empsheet(HttpSession session){
         Employees emp = (Employees) session.getAttribute("employees");
