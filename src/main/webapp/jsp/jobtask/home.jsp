@@ -54,8 +54,8 @@
                 <p style="font-size:12px;">${employees.addwork}</p>
             </div>
             <div style="width:25%;text-align: center;float: left;margin-top: 10px;">
-                <span style="color:#66CC66"> 预约总数</span>
-                <p style="font-size:12px;">预约总数</p>
+                <span style="color:#66CC66"> 预计总数</span>
+                <p style="font-size:12px;">${employees.basic+employees.addwork+employees.present+employees.yuperformance-employees.reducepresent}</p>
             </div>
 
         </div>
