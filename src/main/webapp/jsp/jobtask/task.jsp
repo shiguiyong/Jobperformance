@@ -255,6 +255,14 @@
     function sub(id) {
         layer.open({
             type: 2,
+            title: ['新增','color:black;background-color:#ffc000;'],
+            shadeClose: true,
+            shade: 0.8,
+            area: ['35%', '90%'],
+            content: '${pageContext.request.contextPath}/jsp/jobtask/submit.jsp?taskId='+id,
+        });
+        /*layer.open({
+            type: 2,
             title: ['提交任务','color:black;background-color:#ffc000;'],
             shadeClose: true,
             shade: 0.8,
@@ -264,7 +272,7 @@
                 location.reload();
             }
         });
-
+*/
     }
     function claimtask(id) {
         var status = $("#status"+id).text();
