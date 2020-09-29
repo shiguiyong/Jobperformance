@@ -39,7 +39,7 @@ public class EmployeesController {
             response.setContentType("text/html");
             response.setCharacterEncoding("UTF-8");
             request.setCharacterEncoding("UTF-8");
-            String redirect_uri = URLEncoder.encode("http://www.18725987688.com/job/loginByOpenId?", "UTF-8");
+            String redirect_uri = URLEncoder.encode("https://www.18725987688.com/job/loginByOpenId?", "UTF-8");
             StringBuffer url = new StringBuffer(
                     "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + "wx1eea06b76b80cd05" + "&redirect_uri=" + redirect_uri
                             + "&response_type=code&scope=snsapi_base&state=" + "1" + "#wechat_redirect");
@@ -67,7 +67,7 @@ public class EmployeesController {
         session.setAttribute("openid", OPENID);
         String redirectUrl ="";
         if(OPENID==null||OPENID==""){
-             redirectUrl = "http://www.18725987688.com/job";
+             redirectUrl = "https://www.18725987688.com/job";
             response.sendRedirect(redirectUrl);
         }else{
             Employees employees = service.selectByOpenId(OPENID);
@@ -76,13 +76,13 @@ public class EmployeesController {
             }
             session.setAttribute("ACCESS_TOKEN", ACCESS_TOKEN);
             if(null == employees){
-                redirectUrl = "http://www.18725987688.com/job";
+                redirectUrl = "https://www.18725987688.com/job";
             }
             if("manage".equals(employees.getRole())){
-                redirectUrl = "http://www.18725987688.com/job/jsp/jobtask/manageindex.jsp";
+                redirectUrl = "https://www.18725987688.com/job/jsp/jobtask/manageindex.jsp";
             }
             if("employee".equals(employees.getRole())){
-                redirectUrl = "http://www.18725987688.com/job/jsp/jobtask/index.jsp";
+                redirectUrl = "https://www.18725987688.com/job/jsp/jobtask/index.jsp";
             }
             response.sendRedirect(redirectUrl);
         }
