@@ -15,6 +15,7 @@
     <result column="yuperformance" property="yuperformance" jdbcType="DECIMAL" />
     <result column="basic" property="basic" jdbcType="DECIMAL" />
     <result column="addwork" property="addwork" jdbcType="DECIMAL" />
+    <result column="openId" property="openid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, account, password, name, role, status, present, reducepresent, performance, performancepercent,
-    yuperformance, basic, addwork
+    yuperformance, basic, addwork, openId
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiuxiu.pojo.EmployeesExample" >
     select
@@ -113,12 +114,12 @@
       name, role, status,
       present, reducepresent, performance,
       performancepercent, yuperformance, basic,
-      addwork)
+      addwork, openId)
     values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
       #{present,jdbcType=DECIMAL}, #{reducepresent,jdbcType=DECIMAL}, #{performance,jdbcType=DECIMAL},
       #{performancepercent,jdbcType=DOUBLE}, #{yuperformance,jdbcType=DECIMAL}, #{basic,jdbcType=DECIMAL},
-      #{addwork,jdbcType=DECIMAL})
+      #{addwork,jdbcType=DECIMAL}, #{openid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiuxiu.pojo.Employees" >
     insert into employees
@@ -162,6 +163,9 @@
       <if test="addwork != null" >
         addwork,
       </if>
+      <if test="openid != null" >
+        openId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -202,6 +206,9 @@
       </if>
       <if test="addwork != null" >
         #{addwork,jdbcType=DECIMAL},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -253,6 +260,9 @@
       <if test="record.addwork != null" >
         addwork = #{record.addwork,jdbcType=DECIMAL},
       </if>
+      <if test="record.openid != null" >
+        openId = #{record.openid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,7 +282,8 @@
     performancepercent = #{record.performancepercent,jdbcType=DOUBLE},
     yuperformance = #{record.yuperformance,jdbcType=DECIMAL},
     basic = #{record.basic,jdbcType=DECIMAL},
-    addwork = #{record.addwork,jdbcType=DECIMAL}
+    addwork = #{record.addwork,jdbcType=DECIMAL},
+    openId = #{record.openid,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -316,6 +327,9 @@
       <if test="addwork != null" >
         addwork = #{addwork,jdbcType=DECIMAL},
       </if>
+      <if test="openid != null" >
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -332,7 +346,8 @@
       performancepercent = #{performancepercent,jdbcType=DOUBLE},
       yuperformance = #{yuperformance,jdbcType=DECIMAL},
       basic = #{basic,jdbcType=DECIMAL},
-      addwork = #{addwork,jdbcType=DECIMAL}
+      addwork = #{addwork,jdbcType=DECIMAL},
+      openId = #{openid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="empsheet" resultType="com.xiuxiu.pojo.Employees">

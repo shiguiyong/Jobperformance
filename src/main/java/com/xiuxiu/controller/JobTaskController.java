@@ -47,12 +47,17 @@ public class JobTaskController {
         if(password == null || password== ""){
             return JsonpUtils.Result(callback,new Result(2,"请正确输入您的账号密码"));
         }
+        String openid = (String) session.getAttribute("openid");
         Employees employees = new Employees();
         employees.setAccount(account);
         employees.setPassword(password);
         Result login = service.login(employees);
         if(login.getCode()==1){
             Employees emp = service.findEmployees(Integer.parseInt(login.getMessage()));
+            if(null == emp.getOpenid()|| "".equals(emp.getOpenid())){
+                emp.setOpenid(openid);
+                service.updateEmployees(emp);
+            }
             session.setAttribute("employees",emp);
             if(emp.getRole().equals("manage")){
                 login.setCode(3);

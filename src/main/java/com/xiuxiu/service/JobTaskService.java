@@ -22,6 +22,9 @@ public interface JobTaskService {
      Result login(Employees employees);
 
      Employees  findEmployees(Integer id);
+     int  updateEmployees(Employees employees);
+
+
     Employees updateEmp(Employees employees);
 
     //所有任务

@@ -33,6 +33,18 @@ public class EmployeesServiceImpl implements EmployeesService {
     private EmployeetaskMapper taskMapper;
     @Autowired
     private ApplyforempMapper applyMapper;
+
+    @Override
+    public Employees selectByOpenId(String openid) {
+        EmployeesExample example = new EmployeesExample();
+        example.createCriteria().andOpenidEqualTo(openid);
+        List<Employees> employees = mapper.selectByExample(example);
+        if(employees.size()>0){
+            return  employees.get(0);
+        }
+        return null;
+    }
+
     //上月记录
     @Override
     public Result monthbill() {

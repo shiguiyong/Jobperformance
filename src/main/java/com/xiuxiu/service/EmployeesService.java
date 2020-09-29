@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface EmployeesService {
 
+    Employees selectByOpenId(String openid);
+
     //每天统计
 
     Result monthbill();

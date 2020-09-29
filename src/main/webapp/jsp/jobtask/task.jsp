@@ -12,15 +12,25 @@
         body{
             margin:0px
         }
+		@media only screen and (min-width:769px) {
+		.taskbox{width:23%;background:#a8e8ff;position:relative;margin-left:10px;margin-top:10px;z-index:9;height:auto;border-radius:5px;float:left}
+		.taskbar{width:115px;height:100%;float:left;top:0px;left:calc( 100% - 120px );position:fixed;z-index: 99999;}
+		.taskwall{width:calc( 100% - 120px );background:#fff;position:relative;}
+		}
+		@media only screen and (max-width:768px) {
+		.taskbox{width:90%;background:#a8e8ff;position:relative;margin-left:10px;margin-top:10px;z-index:9;height:400px;border-radius:5px;float:left}
+		.taskbar{width:60px;height:100%;float:left;top:0px;left:calc( 100% - 60px );position:fixed;z-index: 99999;}
+		.taskwall{width:calc( 100% - 60px );background:#fff;position:relative;}
+		}
     </style>
     <title></title>
 </head>
 <body style="background:#Fff;">
-<div style="">
-    <div style="width:calc( 100% - 120px );background:#fff;position:relative;" id="tasklist">
+<div >
+    <div class="taskwall" id="tasklist">
     </div>
 
-    <div style="width:115px;height:100%;float:left;top:0px;left:calc( 100% - 120px );position:fixed;z-index: 99999;" >
+    <div class="taskbar" >
 
         <div style="position:fixed;top:120px" onclick="sousuo(1)">
             <div style="width:80px;height:80px;background:#0099ff;text-align:center;cursor: pointer;">
@@ -101,7 +111,7 @@
             success : function(data) {
                 var str='';
                 $.each(data.list,function(index, list){
-                    str +=' <div style="width:20%;background:#a8e8ff;position:relative;margin-left:10px;margin-top:10px;z-index:9;height:330px;border-radius:5px;float:left">';
+                    str +=' <div class="taskbox">';
                     str +=' <p style="padding:10px">';
                     if(list.status == 1){
                         str +=' <span style="font-size:12px;background:#00b0f0;color:white" id="status'+list.id+'">待审核</span>' ;
@@ -255,14 +265,6 @@
     function sub(id) {
         layer.open({
             type: 2,
-            title: ['新增','color:black;background-color:#ffc000;'],
-            shadeClose: true,
-            shade: 0.8,
-            area: ['35%', '90%'],
-            content: '${pageContext.request.contextPath}/jsp/jobtask/submit.jsp?taskId='+id,
-        });
-        /*layer.open({
-            type: 2,
             title: ['提交任务','color:black;background-color:#ffc000;'],
             shadeClose: true,
             shade: 0.8,
@@ -272,7 +274,7 @@
                 location.reload();
             }
         });
-*/
+
     }
     function claimtask(id) {
         var status = $("#status"+id).text();

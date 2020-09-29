@@ -52,6 +52,11 @@ public class JobTaskServiceImpl implements JobTaskService{
     }
 
     @Override
+    public int updateEmployees(Employees employees) {
+        return employeesMapper.updateByPrimaryKey(employees);
+    }
+
+    @Override
     public Employees updateEmp(Employees employees) {
         int update = employeesMapper.updateByPrimaryKeySelective(employees);
         if(update == 1){

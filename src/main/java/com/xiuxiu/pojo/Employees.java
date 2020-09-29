@@ -29,6 +29,8 @@ public class Employees {
 
     private BigDecimal addwork;
 
+    private String openid;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class Employees {
 
     public void setAddwork(BigDecimal addwork) {
         this.addwork = addwork;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
     }
 }
