@@ -18,6 +18,15 @@ public class TaskManage {
         }).start();
 
     }
+    public  void recover()  {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Result recover = service.recover();
+            }
+        }).start();
+
+    }
 
 
 

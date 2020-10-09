@@ -320,6 +320,6 @@
         and  duration = ${bill.duration}
       </if>
     </where>
-    order by id desc
+    order by duration desc , id desc
   </select>
 </mapper>

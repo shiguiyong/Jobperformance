@@ -1,6 +1,7 @@
 package com.xiuxiu.serviceImpl;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.github.pagehelper.PageHelper;
 import com.xiuxiu.mapper.*;
 import com.xiuxiu.pojo.*;
 import com.xiuxiu.service.EmployeesService;
@@ -49,6 +50,25 @@ public class EmployeesServiceImpl implements EmployeesService {
     @Override
     public Result monthbill() {
        return liveUpdate();
+    }
+
+    @Override
+    public Result recover() {
+        int i = 0;
+        EmployeesExample example = new EmployeesExample();
+        List<Employees> employees = mapper.selectByExample(example);
+        for (Employees employee : employees) {
+            employee.setPresent(new BigDecimal(100) );
+            employee.setReducepresent(new BigDecimal(0) );
+            employee.setPerformancepercent(1.0);
+            employee.setYuperformance(employee.getPerformance());
+            employee.setAddwork(new BigDecimal(0));
+             i += mapper.updateByPrimaryKey(employee);
+        }
+        if(i == employees.size()){
+            return  new Result(1,"成功");
+        }
+        return  new Result(0,"失败");
     }
 
     @Override

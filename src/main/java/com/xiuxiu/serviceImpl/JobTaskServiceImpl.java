@@ -69,7 +69,7 @@ public class JobTaskServiceImpl implements JobTaskService{
 
     @Override
     public PageInfo selectJobTask(Integer pageNum,Conditions conditions) {
-        PageHelper.startPage(pageNum,20);
+        PageHelper.startPage(pageNum,11);
         List<Map> list = taskMapper.selectJobTask(conditions);
        /* for (Employeetask employeetask : list) {
             Map map = taskMapper.getPercent(employeetask.getSerialnumber());

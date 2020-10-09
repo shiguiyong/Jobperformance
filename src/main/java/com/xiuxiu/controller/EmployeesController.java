@@ -102,7 +102,7 @@ public class EmployeesController {
             employees.setId(emp.getId());
             employees.setEmpname("");
         }
-        PageHelper.startPage(1,20);
+        PageHelper.startPage(1,11);
         List<Monthlybill> empsheet = service.billsheet(employees);
         PageInfo<Monthlybill> pageInfo = new PageInfo<>(empsheet);
         session.setAttribute("pageInfo",pageInfo);
@@ -118,7 +118,7 @@ public class EmployeesController {
             employees.setId(emp.getId());
             employees.setEmpname("");
         }
-        PageHelper.startPage(pageNum,20);
+        PageHelper.startPage(pageNum,11);
         List<Monthlybill> empsheet = service.billsheet(employees);
         PageInfo<Monthlybill> pageInfo = new PageInfo<>(empsheet);
         return pageInfo;

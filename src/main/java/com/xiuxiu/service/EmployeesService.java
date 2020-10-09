@@ -17,6 +17,8 @@ public interface EmployeesService {
     //每天统计
 
     Result monthbill();
+    //每月1号复原
+    Result recover();
 
 
     //实时更新账户信息

@@ -59,6 +59,8 @@
                         <td> <input type="text" name="employeeName"  placeholder="" autocomplete="off" class="layui-input">
                         </td>
                     </c:if>
+                    <td nowrap class="name" style="margin-left: auto">月份</td>
+                    <td > <input  name="duration" class="layui-input" id="test5" ></td>
                     <td> <div style="margin-left: 20px"  id="sousuo" class="sousuo" onclick="searchPage(1)" lay-filter="sreach">搜索</div></td>
 
                 </tr>  </tbody>
@@ -79,6 +81,7 @@
         <th >
             <input type="checkbox"  onclick="swapCheck()"  lay-skin="primary">
         </th>
+        <th nowrap width="185px" >月份</th>
         <th nowrap width="185px" >员工</th>
         <th nowrap width="185px">基本工资</th>
         <th nowrap width="185px">绩效基数</th>
@@ -113,6 +116,7 @@
                 var str='';
                 $.each(data.list,function(index, list){
                     str+='<tr><td nowrap><input type="checkbox" name="checkbox" id="ids" style="margin: auto;display: block;" lay-skin="primary" value="'+list.id+'" /> </td>';
+                    str+='<td nowrap>'+list.duration+'</td>';
                     str+='<td nowrap>'+list.empname+'</td>';
                     str+='<td nowrap>'+list.basic+'</td>';
                     str+='<td nowrap>'+list.performance+'</td>';
@@ -323,7 +327,7 @@
     })
 
 
-    /*layui时间选择器*/
+   /* /!*layui时间选择器*!/
     layui.use('laydate', function(){
         var $ = layui.$;
         var laydate = layui.laydate;
@@ -359,14 +363,14 @@
             }
         });
     });
-
+*/
 
     layui.use('laydate', function(){
         var laydate = layui.laydate;
         //日期时间选择器
         laydate.render({
             elem: '#test5'
-            ,type: 'datetime'
+            ,type: 'month'
         });
     });
 
