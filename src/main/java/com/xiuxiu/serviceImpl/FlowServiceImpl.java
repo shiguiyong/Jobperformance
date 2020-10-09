@@ -51,7 +51,8 @@ public class FlowServiceImpl  implements FlowService {
 
     @Override
     public Result shangban(Attendance attendance) {
-        String ipstring="222.182.52.236";
+        //String ipstring="222.182.52.236";
+        String ipstring="106.83.138.108";
         if(!ipstring.equals(attendance.getIp())){
             return  new Result(2,"只能连公司WIFI打卡");
         }
@@ -95,7 +96,8 @@ public class FlowServiceImpl  implements FlowService {
 
     @Override
     public Result xiaban(Attendance attendance) {
-        String ipstring="222.182.52.236";
+        //String ipstring="222.182.52.236";
+        String ipstring="106.83.138.108";
         if(!ipstring.equals(attendance.getIp())){
             return  new Result(2,"只能连公司WIFI打卡");
         }

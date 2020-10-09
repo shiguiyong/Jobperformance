@@ -149,7 +149,7 @@
                 $.each(data.list,function(index, list){
                     str+='<tr><td nowrap><input type="checkbox" name="checkbox" id="ids" style="margin: auto;display: block;" lay-skin="primary" value="'+list.id+'" /> </td>';
                     str+='<td nowrap>'+list.nowurl+'</td>';
-                    if(list.fromurl.length == 0){
+                    if(list.fromurl == null){
                         str+='<td nowrap></td>';
                     }else {
                         str+='<td nowrap>'+list.fromurl+'</td>';
