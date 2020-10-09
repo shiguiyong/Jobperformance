@@ -391,6 +391,9 @@
      <if test="attendance.status !=null and attendance.status  !=''">
        and  status = "${attendance.status}"
      </if>
+     <if test="attendance.datevar !=null and attendance.datevar  !=''">
+       and  datevar = "${attendance.datevar}"
+     </if>
    </where>
    order by id desc
   </select>

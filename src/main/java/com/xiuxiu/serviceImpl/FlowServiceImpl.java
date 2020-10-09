@@ -153,7 +153,7 @@ public class FlowServiceImpl  implements FlowService {
 
     @Override
     public PageInfo queryAllAttendance(Integer pageNum, Attendance attendance) {
-        PageHelper.startPage(pageNum,11);
+        PageHelper.startPage(pageNum,13);
         List<Map> list = attendanceMapper.queryAllAttendance(attendance);
         PageInfo<Map> pageInfo = new PageInfo<>(list);
         return pageInfo;
@@ -203,7 +203,7 @@ public class FlowServiceImpl  implements FlowService {
 
     @Override
     public PageInfo queryApplication(Integer pageNum,Applyforemp applyforemp) {
-        PageHelper.startPage(pageNum,11);
+        PageHelper.startPage(pageNum,13);
         List<Map> list = applyMapper.queryApplication(applyforemp);
         PageInfo<Map> pageInfo = new PageInfo<>(list);
         return pageInfo;

@@ -40,9 +40,9 @@
         }
     </style>
 </head>
-<body style="width: 100%;overflow:hidden;">
+<body style="width: 100%;">
 
-<form style="position: fixed;top: 35px;" id="formId" method="post" enctype="multipart/form-data">
+<form style="top: 35px;" id="formId" method="post" enctype="multipart/form-data">
     <div style="width: 70%;margin: auto;display: block">
             <div class="data_box">
             <span class="Data_name">开始时间</span>

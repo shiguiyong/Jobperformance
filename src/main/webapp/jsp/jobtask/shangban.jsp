@@ -15,35 +15,37 @@
     <title></title>
 </head>
 <body>
-<div style="width:100%;background:#0099ff;position:fixed;top:0px;left:0px;float:left;text-align:center">
-    <div style="line-height:44px;float:left">
-        <img src="${pageContext.request.contextPath}/images/返回.png"  style="width:20px;height:20px;margin-top:10px;margin-left:10px">
-        <!-- 	<span style="font-size:12px;color:white;bottom:10px">返回</span> -->
-
+<div style="width:100%;position:fixed;top:0px;left:0px;float:left;text-align:center">
+	<a href="${pageContext.request.contextPath}/jsp/jobtask/attendancedetails.jsp">
+    <div style="line-height:44px;float:right;">
+        <img src="${pageContext.request.contextPath}/images/jl.png"  style="width:30px;height:30px;margin-top:10px;margin-right:20px">
+        
     </div>
-    <div style="line-height:44px;font-size:14px;color:#fff">打卡</div>
+   </a>
 
 </div>
 <div>
-    <div style="position:fixed;top: 30%;left: 40%">
-        <span onclick="shangban()" style="font-size:14px;background:#0099ff;padding:5px 8px;border-radius:3px;color:white">上班打卡</span>
+    <div onclick="shangban()" style="position:fixed;top: 30%;left: 40%">
+		<span><img src="../../images/sb.png" style="width: 60px;height:60px;float: left;" /></span>
+        <p  style="float: left;font-size:14px;background:#0099ff;padding:5px 8px;border-radius:3px;color:white">上班打卡</p>
     </div>
 </div>
 
 <div>
-    <div style="position:fixed;top: 50%;left: 40%">
-        <span onclick="xiaban()" style="font-size:14px;background:#0099ff;padding:5px 8px;border-radius:3px;color:white">下班打卡</span>
+    <div onclick="xiaban()" style="position:fixed;top: 50%;left: 40%">
+		<span><img src="../../images/xb.png" style="width: 60px;height:60px;float: left;" /></span>
+        <p  style="float: left;font-size:14px;background:#0099ff;padding:5px 8px;border-radius:3px;color:white">下班打卡</p>
     </div>
 </div>
 
-<div class="dakacg" style="display:none;position:fixed;width:100%;height:100%;left:0px;top:44px;background:#fff">
+<div class="dakacg" style="display:none;position:fixed;width:100%;height:100%;left:0px;top:0px;background:#fff">
     <div style="position:fixed;width:100px;height:120px;background:white;top:calc( 50% - 50px );left:calc( 50% - 50px );text-align:center">
         <span> <img src="${pageContext.request.contextPath}/images/cg.png" style="width:40px;height:40px;margin-top:15px" ></span>
         <p style="font-size:13px">打卡成功</p>
     </div>
 </div>
-<div class="dakasb" style="display:none;position:fixed;width:100%;height:100%;left:0px;top:44px;">
-    <div class="dakagb" style="position:fixed;width:100%;height:100%;left:0px;top:44px;background:rgb(0,0,0,0.3)">
+<div class="dakasb" style="display:none;position:fixed;width:100%;height:100%;left:0px;">
+    <div class="dakagb" style="position:fixed;width:100%;height:100%;left:0px;top:0px;background:rgb(0,0,0,0.3)">
         <div style="position: fixed;width: 180px;height: 175px;background: white; top: 27%;left: 27%; text-align: center;">
             <span> <img src="${pageContext.request.contextPath}/images/cw.png" style="width:40px;height:40px;margin-top:15px" ></span>
            <div id="divid">

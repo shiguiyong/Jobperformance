@@ -56,6 +56,7 @@
         <!--每天0点确认收货,删除过期未支付订单,恢复点赞数,删除过期lable-->
  <!--    <task:scheduled ref="timeTask" method="monthbill" cron="0 00 00 1 * ?"/>-->
      <task:scheduled ref="timeTask" method="monthbill" cron="0 50 23 * * ?"/>
+     <task:scheduled ref="timeTask" method="recover" cron="0 0 0 1 * ?"/>
      <!--每周一0点生成信用账单-->
       <!--  <task:scheduled ref="timeTask" method="creditBillProduce" cron="0 0 0 ? * MON"/>
         &lt;!&ndash;每分钟去检查一次有没有过期的&ndash;&gt;
