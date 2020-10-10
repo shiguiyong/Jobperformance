@@ -178,13 +178,13 @@ public class FlowServiceImpl  implements FlowService {
     @Override
     public Result confirmApplication(Integer id, Integer status,Double money) {
         Applyforemp apply = applyMapper.selectByPrimaryKey(id);
-        Employees emp = employeesMapper.selectByPrimaryKey(apply.getEmpid());
+        //Employees emp = employeesMapper.selectByPrimaryKey(apply.getEmpid());
         apply.setStatus(status);
         if(status==3){//打回
             apply.setMoney(new BigDecimal(0));
         }else {//通过
             apply.setMoney(new BigDecimal(money));
-            if(apply.getType() == 1){
+           /* if(apply.getType() == 1){
                emp.setAddwork(emp.getAddwork().add(new BigDecimal(money)));
             }  if(apply.getType() == 2){
                 emp.setPresent(new BigDecimal(0));
@@ -192,12 +192,12 @@ public class FlowServiceImpl  implements FlowService {
             }
             if(apply.getType() == 3){
                 emp.setAddwork(emp.getAddwork().add(new BigDecimal(money)));
-            }
+            }*/
         }
         apply.setConfirmman("林山");
         apply.setConfirmtime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         applyMapper.updateByPrimaryKey(apply);
-        employeesMapper.updateByPrimaryKey(emp);
+       // employeesMapper.updateByPrimaryKey(emp);
         return new Result(1,"操作成功");
     }
 
