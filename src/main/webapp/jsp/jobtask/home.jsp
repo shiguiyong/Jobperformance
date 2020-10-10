@@ -91,7 +91,7 @@
 </div>
 </body>
 <script>
-  /*  $(function () {
+    $(function () {
         initialize();
     })
 
@@ -152,7 +152,7 @@
                 $(".loading4").fadeOut("slow");
             }
         });
-    }*/
+    }
 
 
 

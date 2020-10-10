@@ -57,10 +57,11 @@
     <img src="${pageContext.request.contextPath}/images/资源.png" class="images" >
     <p style="font-size: 12px;margin-top:-10px">申请</p>
     </div>
-    <!-- <div class="home-btn" >
+    <input value="${employees.account}" style="display: none">
+   <div class="home-btn" onclick="show(this)" id="chat">
         <img src="${pageContext.request.contextPath}/images/time.png" class="images" >
         <p style="font-size: 12px;margin-top:-10px">个人中心</p>
-    </div> -->
+    </div>
     <div style="float:right;margin-right:10px" >
         <a class="shuaxin" onclick="shuaxin('${employees.account}','${employees.password}')" title="刷新">刷新</a>
         <img onclick="show(this)" id="center" src="${pageContext.request.contextPath}/images/hrslogo2.png" class="logoimage" >
@@ -100,6 +101,11 @@
         if($(_this).attr("id")=="center"){
             x_admin_show('',"${pageContext.request.contextPath}/JobTask/personalcenter",400,400);
             //document.getElementById("lsframe").src="https://baidu.com";
+        }
+        if($(_this).attr("id")=="chat"){
+            var loginid = $("#loginId").val();
+            x_admin_show('',"http://localhost:82/chat.html?loginId=1000",800,450);
+
         }
     }
 

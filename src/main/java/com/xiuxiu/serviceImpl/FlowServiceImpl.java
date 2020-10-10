@@ -4,11 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiuxiu.mapper.ApplyforempMapper;
 import com.xiuxiu.mapper.AttendanceMapper;
+import com.xiuxiu.mapper.EmployeesMapper;
 import com.xiuxiu.mapper.VisitorvolumeMapper;
-import com.xiuxiu.pojo.Applyforemp;
-import com.xiuxiu.pojo.Attendance;
-import com.xiuxiu.pojo.Result;
-import com.xiuxiu.pojo.Visitorvolume;
+import com.xiuxiu.pojo.*;
 import com.xiuxiu.service.FlowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +33,8 @@ public class FlowServiceImpl  implements FlowService {
     private AttendanceMapper attendanceMapper;
     @Autowired
     private ApplyforempMapper applyMapper;
+    @Autowired
+    private EmployeesMapper employeesMapper;
     @Override
     public Result insertVisitorvolume(Visitorvolume visitorvolume) {
         int insert = mapper.insert(visitorvolume);
@@ -178,15 +178,26 @@ public class FlowServiceImpl  implements FlowService {
     @Override
     public Result confirmApplication(Integer id, Integer status,Double money) {
         Applyforemp apply = applyMapper.selectByPrimaryKey(id);
+        Employees emp = employeesMapper.selectByPrimaryKey(apply.getEmpid());
         apply.setStatus(status);
-        if(status==3){
+        if(status==3){//打回
             apply.setMoney(new BigDecimal(0));
-        }else {
+        }else {//通过
             apply.setMoney(new BigDecimal(money));
+            if(apply.getType() == 1){
+               emp.setAddwork(emp.getAddwork().add(new BigDecimal(money)));
+            }  if(apply.getType() == 2){
+                emp.setPresent(new BigDecimal(0));
+                emp.setReducepresent(emp.getReducepresent().add(new BigDecimal(money)));
+            }
+            if(apply.getType() == 3){
+                emp.setAddwork(emp.getAddwork().add(new BigDecimal(money)));
+            }
         }
         apply.setConfirmman("林山");
         apply.setConfirmtime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         applyMapper.updateByPrimaryKey(apply);
+        employeesMapper.updateByPrimaryKey(emp);
         return new Result(1,"操作成功");
     }
 
